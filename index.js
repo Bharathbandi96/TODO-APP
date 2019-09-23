@@ -1,5 +1,9 @@
 // Import stylesheets
 import './style.css';
+import {checkBox} from './scripts/checkbox.js'
+
+
+
 
 // Write Javascript code!
 // const appDiv = document.getElementById('app');
@@ -45,32 +49,28 @@ import './style.css';
 
    var todos = [];
     document.getElementById('button').addEventListener('click', function () {
- var list = document.getElementById('toDoList');
- list.innerHTML = ''; //resetting the list
+      var list = document.getElementById('toDoList');
+      list.innerHTML = ''; //resetting the list
       var todoInput = document.getElementById('todoInput').value;
-    todos.push(todoInput)  
+      todos.push(todoInput)  
 
-        var item = document.createElement("li");
-    for (var i = 0; i < todos.length; i++) {
-        var listItem = document.createTextNode(todos[i]);
-       var li = document.createElement("li");
-  li.appendChild(document.createTextNode(todos[i]));
-  list.append(li);
-    }
+      var item = document.createElement("li");
+        for (var i = 0; i < todos.length; i++) {
+          var listItem = document.createTextNode(todos[i]);
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode(todos[i]));
+          list.append(li);
+        }
 
-    var item = document.createElement("value");
-    for (var i = 0; i < todos.length; i++) {
-        var listItem = document.createTextNode(todos[i]);
-       var value = document.createElement("value");
-  value.appendChild(document.createTextNode(todos[i]));
-  list.append(value);
-    }
+      var item = document.createElement("value");
+        for (var i = 0; i < todos.length; i++) {
+          var listItem = document.createTextNode(todos[i]);
+          var value = document.createElement("value");
+          value.appendChild(document.createTextNode(todos[i]));
+          list.append(value);
+        }
 
-  });
+      });
 
-    var i = 1;      // COUNTER, FOR CHECKBOX ID.
-
-  
-  
-
+    
 
