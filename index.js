@@ -1,57 +1,33 @@
 // Import stylesheets
 import './style.css';
-import {checkBox} from './scripts/checkbox.js'
 
 
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("li");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("list");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
 
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
 
-// Write Javascript code!
-// const appDiv = document.getElementById('app');
-// appDiv.innerHTML = `<h1>JS Starter</h1>`;
-
-
-// document.addEventListener('keyup',function(event){
-//   if(event.keyCode == 13){
-//     const toDo = input.value;
-//     if(toDo){
-//       addTodo(toDo,id,false,false);
-//       List.push(
-//         {
-//           name:toDo,
-//           id:id,
-//           done:false,
-//           trash:false
-
-//         }
-//       );
-//       input.value='';
-//       id++;
-//     }
-//   }
-// });
-  // function add(){
-  //   var todos = [];
-  //       document.getElementById('addBtn').addEventListener('click', function () {
-  //   var list = document.getElementById('toDoList');
-  //   list.innerHTML = ''; //resetting the list
-  //         var todoInput = document.getElementById('Cbox').value;
-  //       todos.push(todoInput)  
-
-  //       var item = document.createElement("li");
-  //       for (var i = 0; i < todos.length; i++) {
-  //           var listItem = document.createTextNode(todos[i]);
-  //         var li = document.createElement("li");
-  //     li.appendChild(document.createTextNode(todos[i]));
-  //     list.append(li);
-  //       }
-  //     });
-  // }
-
-   var todos = [];
+var todos = [];
     document.getElementById('button').addEventListener('click', function () {
-      var list = document.getElementById('toDoList');
-      list.innerHTML = ''; //resetting the list
-      var todoInput = document.getElementById('todoInput').value;
+      var list = document.getElementById('myUL');
+      //list.innerHTML = ''; //resetting the list
+      var todoInput = document.getElementById('myInput').value;
       todos.push(todoInput)  
 
       var item = document.createElement("li");
@@ -59,18 +35,35 @@ import {checkBox} from './scripts/checkbox.js'
           var listItem = document.createTextNode(todos[i]);
           var li = document.createElement("li");
           li.appendChild(document.createTextNode(todos[i]));
+          document.getElementById("myInput").value = "";
           list.append(li);
         }
 
-      var item = document.createElement("value");
-        for (var i = 0; i < todos.length; i++) {
-          var listItem = document.createTextNode(todos[i]);
-          var value = document.createElement("value");
-          value.appendChild(document.createTextNode(todos[i]));
-          list.append(value);
-        }
+      var span = document.createElement("list");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      li.appendChild(span);
 
-      });
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var div = this.parentElement;
+          div.style.display = "none";
+      }}
+    });
 
-    
+
+
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+
+
 
