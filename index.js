@@ -65,17 +65,26 @@ for (i = 0; i < close.length; i++) {
     })
 
 // Add a "checked" symbol when clicking on a list item
-var count=0;
+var a = [];
 var list = document.querySelector('ul');
 debugger;
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
+    a.push();
   }
+  else{
+  }
+  console.log(a.length);
 }, false);
 
 
 
-
-
-
+// var count=0;
+// for(var i=0;i<todos1.length;i++){
+// var check = document.querySelector('ul');
+// debugger;
+// if(todos1[i] == 'checked'){
+//   console.log(count++);
+// }
+// }
