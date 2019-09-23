@@ -30,13 +30,14 @@ var todos = [];
       var todoInput = document.getElementById('myInput').value;
       todos.push(todoInput)  
 
-      var item = document.createElement("li");
+      // var item = document.createElement("li");
         for (var i = 0; i < todos.length; i++) {
           var listItem = document.createTextNode(todos[i]);
           var li = document.createElement("li");
-          li.appendChild(document.createTextNode(todos[i]));
+          li.appendChild(listItem);
           document.getElementById("myInput").value = "";
           list.append(li);
+          todos.pop(todoInput)
         }
 
       var span = document.createElement("list");
@@ -50,7 +51,7 @@ var todos = [];
           var div = this.parentElement;
           div.style.display = "none";
       }}
-    });
+    })
 
 
 

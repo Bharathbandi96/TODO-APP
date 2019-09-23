@@ -1,44 +1,61 @@
 h1, h2 {
   font-family: Lato;
 }
-
+#name{
+  text-align: center;
+  position: fixed;
+  
+}
 #app{
-  height:400px;
+  height:500px;
+  position: fixed;
+  overflow-y: scroll;
+  box-align: center;
+  margin-left:50px;
+  border:2px solid gray;
+  width:450px;
   /* background-color:red */
 }
 #myDIV{
-  margin-top: 50px;
-  text-align: center;
-  padding: 1px; 
+  position: fixed;
+  padding:0px;
+  height:60px;
+  width:440px;
+  padding-left:3px;
+  margin-top: 5px;
   background-color: coral
 }
 
+#myUL{
+  margin-top:125px;
+  padding:2px;
+}
 #myInput{
-  margin-top: 5px;
+  padding-left:3px;
+  margin-top: 0px;
   border-bottom: 2px solid black;
-  padding-right: 5px;
   caret-color: coral
 }
 input {
+  position: relative;
   border: none;
-  width: 65%;
+  width: 70%;
   padding: 10px;
   float: left;
   font-size: 16px;
 }
 
 .addBtn {
-  margin-top: 5px;
+  position: relative;
+
+  margin-left:15px;
   padding: 10px;
   width: 25%;
   background: #d9d9d9;
   color: #555;
-  float: right;
+  float: left;
   text-align: center;
   font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
 }
 
   .addBtn:hover {
@@ -47,8 +64,8 @@ input {
 
 
 .Btn{
-  position: relative;
-  top: 300px;
+  position: fixed;
+  top: 460px;
   float:left;
   padding: 5px;
   width: 100%;
@@ -94,10 +111,10 @@ ul li {
   transition: 0.2s;
   
   /* make the list items unselectable */
-  -webkit-user-select: none;
+  /* -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; */
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
@@ -160,30 +177,3 @@ ul li.checked::before {
 }
 
 
-input {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-}
-
-/* Style the "Add" button */
-.addBtn {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
-}
-
-.addBtn:hover {
-  background-color: #bbb;
-}
