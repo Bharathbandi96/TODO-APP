@@ -1,3 +1,64 @@
 h1, h2 {
   font-family: Lato;
 }
+
+#app{
+  height:400px;
+  /* background-color:red */
+}
+#myDIV{
+  margin-top: 50px;
+  text-align: center;
+  padding: 1px; 
+  background-color: coral
+}
+
+#myInput{
+  margin-top: 5px;
+  border-bottom: 2px solid black;
+  padding-right: 5px;
+  caret-color: coral
+}
+input {
+  border: none;
+  width: 65%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+.addBtn {
+  margin-top: 5px;
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: right;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+  .addBtn:hover {
+  background-color: #bbb;
+}
+
+
+.Btn{
+  position: relative;
+  top: 300px;
+  float:left;
+  padding: 5px;
+  width: 100%;
+}
+
+.Btn1,.Btn2,.Btn3{
+  padding:10px;
+  padding-right: 25px;
+  background: #d9d9d9;
+  color: #555;
+  text-align: center;
+  font-size: 16px;
+}
