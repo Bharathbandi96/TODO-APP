@@ -8,6 +8,8 @@ var closed = 0;
 var all = 0;
 var completed = 0;
 var checkClose = 0;
+
+
 document.getElementById('button').addEventListener('click', function () {
     var list = document.getElementById('myUL');
     //list.innerHTML = ''; //resetting the list
@@ -25,20 +27,26 @@ document.getElementById('button').addEventListener('click', function () {
       all = todos1.length;
       todos.pop(todoInput);
     }
+
     console.log(todos1);
+
+
     var span = document.createElement("list");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
 
+    debugger;
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
         debugger;
         var div = this.parentElement;
         div.style.display = "none";
+        //console.log(i);
         div.className = '';
-        todos1.pop();
+        //todos1.pop();
+
         closed++;
       }}
     })
