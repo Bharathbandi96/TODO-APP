@@ -13,7 +13,6 @@ var x = 0;
 var z = 0;
 // var checkClose = 0;
 
-
 document.getElementById('button').addEventListener('click', function () {
     var list = document.getElementById('myUL');
     //list.innerHTML = ''; //resetting the list
