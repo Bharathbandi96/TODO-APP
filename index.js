@@ -7,6 +7,8 @@ var todos1= [];
 var closed = 0;
 var all = 0;
 var completed = 0;
+var x = 0;
+var z = 0;
 // var checkClose = 0;
 
 
@@ -18,11 +20,11 @@ document.getElementById('button').addEventListener('click', function () {
     
 
     // var item = document.createElement("li");
+    
     for (var i = 0; i < todos.length; i++) {
-      
       var listItem = document.createTextNode(todos[i]);
       var li = document.createElement("li");
-      li.setAttribute("id", "democlass")
+      li.setAttribute("id",x)
       li.appendChild(listItem);
       document.getElementById("myInput").value = "";
       list.append(li);
@@ -30,6 +32,7 @@ document.getElementById('button').addEventListener('click', function () {
       all = todos1.length;
       todos.pop(todoInput);
     }
+    x++;
 
     console.log(todos1);
 
@@ -44,16 +47,19 @@ document.getElementById('button').addEventListener('click', function () {
     for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
-        console.log(check)
+        z = div.getAttribute('id');
+        console.log(z);
+        todos1.splice(z,1);
+        console.log(todos1);
         div.style.display = "none";
         div.className = '';
         todos1.pop();
-        // console.log(todos1.splice(1,1));
         closed++;
+     
       }
     }
     })
-       
+    
     
 
 // Add a "checked" symbol when clicking on a list item
