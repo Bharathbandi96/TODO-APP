@@ -2,19 +2,12 @@
 import './style.css';
 
 var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
- 
 var todos = [];
 var todos1= [];
 var closed = 0;
 var all = 0;
 var completed = 0;
+var checkClose = 0;
 document.getElementById('button').addEventListener('click', function () {
     var list = document.getElementById('myUL');
     //list.innerHTML = ''; //resetting the list
@@ -44,7 +37,8 @@ document.getElementById('button').addEventListener('click', function () {
         debugger;
         var div = this.parentElement;
         div.style.display = "none";
-        todos1.pop()
+        
+        todos1.pop();
         closed++;
       }}
     })
@@ -75,7 +69,6 @@ document.getElementById('button').addEventListener('click', function () {
         // total.length-closed;
         var total = all-closed;
         alert(AllText + total);
-        localStorage.clear;
     });
 
     document.getElementById('Btn3').addEventListener('click', event => {
