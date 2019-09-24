@@ -39,8 +39,6 @@ document.getElementById('button').addEventListener('click', function () {
 
     console.log(todos1);
 
-
-
     var span = document.createElement("list");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
