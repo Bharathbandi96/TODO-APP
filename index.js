@@ -15,9 +15,11 @@ document.getElementById('button').addEventListener('click', function () {
     //list.innerHTML = ''; //resetting the list
     var todoInput = document.getElementById('myInput').value;
     todos.push(todoInput)
+    console.log(close)
 
     // var item = document.createElement("li");
     for (var i = 0; i < todos.length; i++) {
+      
       var listItem = document.createTextNode(todos[i]);
       var li = document.createElement("li");
       li.appendChild(listItem);
@@ -38,18 +40,21 @@ document.getElementById('button').addEventListener('click', function () {
     li.appendChild(span);
 
     debugger;
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        debugger;
+    for (var i = 0; i < close.length; i++) {
+      close[i].onclick = function(i) {
         var div = this.parentElement;
         div.style.display = "none";
-        //console.log(i);
         div.className = '';
-        //todos1.pop();
-
+        todos1.pop();
+        // console.log(todos1.splice(1,1));
         closed++;
-      }}
+      }
+      }
+
+   
     })
+       
+    
 
 // Add a "checked" symbol when clicking on a list item
 
@@ -60,14 +65,14 @@ document.getElementById('button').addEventListener('click', function () {
         ev.target.classList.toggle('checked');
       });
 
-    var completedText = 'The number of tasks completed are : '
-    var AllText = 'The total number of tasks are : '
-    var PendingText = 'The number of tasks pending are : '
+    var completedText = 'You have completed : '
+    var AllText = 'Total number of tasks in your todo list : '
+    var PendingText = 'You need to Complete : '
+    var end = ' tasks'
 
     document.getElementById('Btn1').addEventListener('click', event => {
       var check = document.getElementsByClassName('checked');
-      localStorage.clear;
-      alert(completedText + check.length);  
+      alert(completedText + check.length + end);  
     });
 
     // document.getElementById('Btn2').addEventListener('click',function(){location.reload()});
@@ -82,5 +87,5 @@ document.getElementById('button').addEventListener('click', function () {
     document.getElementById('Btn3').addEventListener('click', event => {
         var check = document.getElementsByClassName('checked');
         var pending = todos1.length-check.length
-        alert(PendingText + pending);
+        alert(PendingText + pending + end);
     });

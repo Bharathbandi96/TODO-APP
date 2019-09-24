@@ -64,15 +64,14 @@ input {
 
 .Btn{
   position: fixed;
-  top: 460px;
+  top: 457px;
   float:left;
   padding: 5px;
-  width: 100%;
 }
 
 .Btn1,.Btn2,.Btn3{
-  padding:10px;
-  padding-right: 25px;
+  padding:5px;
+  width:100px;
   background: #d9d9d9;
   color: #555;
   text-align: center;
