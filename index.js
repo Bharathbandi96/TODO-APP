@@ -37,7 +37,7 @@ document.getElementById('button').addEventListener('click', function () {
         debugger;
         var div = this.parentElement;
         div.style.display = "none";
-        
+        div.className = '';
         todos1.pop();
         closed++;
       }}
@@ -50,7 +50,7 @@ document.getElementById('button').addEventListener('click', function () {
     list.addEventListener('click', function(ev) {
       if (ev.target.tagName === 'LI') 
         ev.target.classList.toggle('checked');
-      }, false);
+      });
 
     var completedText = 'The number of tasks completed are : '
     var AllText = 'The total number of tasks are : '
@@ -67,13 +67,12 @@ document.getElementById('button').addEventListener('click', function () {
     document.getElementById('Btn2').addEventListener('click', event => {
         // var total = document.getElementsByTagName('LI');
         // total.length-closed;
-        var total = all-closed;
-        alert(AllText + total);
+        // var total = all-closed;
+        alert(AllText + todos1.length);
     });
 
     document.getElementById('Btn3').addEventListener('click', event => {
         var check = document.getElementsByClassName('checked');
-        var total = all-closed;
-        var pending = total-check.length
-        alert(PendingText + pending);  
+        var pending = todos1.length-check.length
+        alert(PendingText + pending);
     });
