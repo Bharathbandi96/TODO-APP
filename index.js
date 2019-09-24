@@ -3,7 +3,9 @@ import './style.css';
 
 var close = document.getElementsByClassName("close");
 var todos = [];
-var todos1= [];
+var todos1 = [];
+var deleted = [];
+var todos2 = [];
 var closed = 0;
 var all = 0;
 var completed = 0;
@@ -29,12 +31,14 @@ document.getElementById('button').addEventListener('click', function () {
       document.getElementById("myInput").value = "";
       list.append(li);
       todos1.push(todoInput)
+      todos2.push(todoInput)
       all = todos1.length;
       todos.pop(todoInput);
     }
     x++;
 
     console.log(todos1);
+
 
 
     var span = document.createElement("list");
@@ -48,19 +52,28 @@ document.getElementById('button').addEventListener('click', function () {
       close[i].onclick = function(i) {
         var div = this.parentElement;
         z = div.getAttribute('id');
-        console.log(z);
-        todos1.splice(z,1);
-        console.log(todos1);
+        //console.log(z);
+        deleted.unshift(todos2[z]);
+        console.log(deleted);
         div.style.display = "none";
         div.className = '';
         todos1.pop();
         closed++;
-     
+        //console.log(todos1);
       }
     }
     })
     
-    
+    // function checkbox(ele,indx,arr){
+    //   document.getElementById('Btn1').addEventListener('click', event => {
+    //   for(var i=0;i<arr.length;i++){
+    //     if(ele in todos1)
+    //       var check = document.getElementsByClassName('checked');
+    //   }
+    //   return check;  
+    // });
+
+    // } 
 
 // Add a "checked" symbol when clicking on a list item
 
@@ -69,6 +82,7 @@ document.getElementById('button').addEventListener('click', function () {
     list.addEventListener('click', function(ev) {
       if (ev.target.tagName === 'LI') 
         ev.target.classList.toggle('checked');
+        //console.log(todos2.filter(checkbox).keys());
       });
 
 
