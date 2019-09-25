@@ -3,9 +3,6 @@ import './style.css';
 
 var close = document.getElementsByClassName("close");
 var todos = [];
-var todos1 = [];
-var deleted = [];
-var todos2 = [];
 var closed = 0;
 var all = 0;
 var completed = 0;
@@ -29,14 +26,17 @@ document.getElementById('button').addEventListener('click', function () {
       li.appendChild(listItem);
       document.getElementById("myInput").value = "";
       list.append(li);
-      todos1.push(todoInput)
-      todos2.push(todoInput)
-      all = todos1.length;
-      //todos.pop(todoInput);
+      all = todos.length;
+ 
+      var span = document.createElement("list");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      li.appendChild(span);
     }
     x++;
 
-    console.log(todos1);
+    //console.log(todos1);
 
     var span = document.createElement("list");
     var txt = document.createTextNode("\u00D7");
@@ -49,13 +49,14 @@ document.getElementById('button').addEventListener('click', function () {
       close[i].onclick = function(i) {
         var div = this.parentElement;
         z = div.getAttribute('id');
-        //console.log(z);
-        deleted.unshift(todos2[z]);
-        console.log(deleted);
+        console.log(z)
+        console.log(typeof(z));
+        // deleted.unshift(todos[z]);
+        // console.log(deleted);
         div.style.display = "none";
         div.className = '';
-        todos1.pop();
-        closed++;
+        // todos1.pop();
+        // closed++;
         //console.log(todos1);
       }
     }
@@ -98,11 +99,11 @@ document.getElementById('button').addEventListener('click', function () {
         // var total = document.getElementsByTagName('LI');
         // total.length-closed;
         // var total = all-closed;
-        alert(AllText + todos1.length);
+        alert(AllText + todos.length);
     });
 
     document.getElementById('Btn3').addEventListener('click', event => {
         var check = document.getElementsByClassName('checked');
-        var pending = todos1.length-check.length
+        var pending = todos.length-check.length
         alert(PendingText + pending);
     });
