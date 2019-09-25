@@ -4,12 +4,7 @@ import './style.css';
 var close = document.getElementsByClassName("close");
 var list = document.querySelector('ul');
 var todos = [];
-// var allTodos = [];
-// var deleted = [];
-// var closed = [];
 var all = 0;
-var setAttr = 0;
-var getAttr = 0;
 var completedText = 'Completed tasks in your todo list : '
 var AllText = 'Total number of tasks in your todo list : '
 var PendingText = 'Pending tasks in your todo list : '
