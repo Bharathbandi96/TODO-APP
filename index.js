@@ -14,6 +14,7 @@ document.getElementById('button').addEventListener('click', function () {
     todos1.push(todoInput);
     
     for (var i = 0; i < todos.length; i++) {
+      
       var listItem = document.createTextNode(todos[i]);
       var li = document.createElement("li");
       li.setAttribute("id",i)
@@ -32,6 +33,7 @@ document.getElementById('button').addEventListener('click', function () {
     
     var close = document.getElementsByClassName("close");
     for (var i = 0; i < close.length; i++) {
+
       close[i].onclick = function(i) {
         var div = this.parentElement;
         z = div.getAttribute('id');
@@ -39,9 +41,9 @@ document.getElementById('button').addEventListener('click', function () {
         //console.log(integer)
         a = todos1.splice(z,1,'');
         //console.log(typeof(todos1));
-        // todos = todos1.filter(test);
+        todos = todos1.filter(test);
         // console.log(todos);
-        console.log(todos.indexOf(a));
+        //console.log(todos.findIndex(a));
         div.style.display = "none";
         div.className = '';
         closed++;
@@ -50,9 +52,13 @@ document.getElementById('button').addEventListener('click', function () {
     })
     
     function test(ele,indx,arr){
-      if(arr[indx] != ''){
-        return ele;
+      todos = [];
+      for(var i=0;i<todos1.length;i++){
+        if(arr[indx] != ''){
+          todos[i]=ele;
+        }
       }
+      return todos;
     }
     var list = document.querySelector('ul');
     list.addEventListener('click', function(ev) {
