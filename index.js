@@ -14,6 +14,21 @@ document.getElementById('button').addEventListener('click', newElement );
 document.getElementById('button').addEventListener('click', deleteElement );
 list.addEventListener('click',checkElement);
 
+var input = document.getElementById("myInput");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  debugger;
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("button").click();
+  }
+});
+
+
 function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
@@ -28,7 +43,7 @@ function newElement() {
   }
   document.getElementById("myInput").value = "";
 
-  var span = document.createElement("SPAN");
+  var span = document.createElement("Button");
   var cancel = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(cancel);
@@ -37,9 +52,11 @@ function newElement() {
 
 function deleteElement(){
   for (var i = 0; i < close.length; i++) {
-      close[i].onclick = function(i) {
-        var div = this.parentElement;
+      close[i].onclick = function() {
+        console.log(i);
         todos.splice(i,1);
+        var div = this.parentElement;
+        console.log(todos);
         div.remove();
       }
     }
