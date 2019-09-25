@@ -52,11 +52,11 @@ function newElement() {
 
 function deleteElement(){
   for (var i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        console.log(i);
-        todos.splice(i,1);
+      close[i].onclick = function(i) {
         var div = this.parentElement;
-        console.log(todos);
+        var a = document.getElementsByTagName(div).value
+        todos.splice(i,1);
+        //console.log(todos);
         div.remove();
       }
     }
