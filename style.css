@@ -57,7 +57,7 @@ input {
   font-size: 16px;
 }
 
-  .addBtn:hover {
+.addBtn:hover {
   background-color: #bbb;
 }
 
@@ -148,6 +148,7 @@ ul li.checked::before {
 
 /* Style the close button */
 .close {
+  border-collapse: collapse;
   position: absolute;
   right: 0;
   top: 0;
