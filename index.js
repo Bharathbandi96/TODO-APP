@@ -3,9 +3,9 @@ import './style.css';
 
 var close = document.getElementsByClassName("close");
 var todos = [];
-var allTodos = [];
-var deleted = [];
-var closed = [];
+// var allTodos = [];
+// var deleted = [];
+// var closed = [];
 var all = 0;
 var setAttr = 0;
 var getAttr = 0;
@@ -47,7 +47,8 @@ var getAttr = 0;
 //     }
 //     })
 
-document.getElementById('button').addEventListener('click', newElement );function newElement() {
+document.getElementById('button').addEventListener('click', newElement );
+function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var t = document.createTextNode(inputValue);
@@ -59,18 +60,21 @@ document.getElementById('button').addEventListener('click', newElement );functio
   }
   document.getElementById("myInput").value = "";
 
-  var span = document.createElement("SPAN");
+  var span = document.createElement("button");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(txt);
   li.appendChild(span);
+}
+// document.getElementsByClassName('close').addEventListener('click', deleteElement );
 
+function deleteElement(){
   for (var i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.remove();
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.remove();
+      }
     }
-  }
 }
     var list = document.querySelector('ul');
     list.addEventListener('click', function(ev) {
