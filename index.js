@@ -41,9 +41,9 @@ document.getElementById('button').addEventListener('click', deleteElement );
 
 function deleteElement(){
   for (var i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
+      close[i].onclick = function(i) {
         var div = this.parentElement;
-        console.log(todos.splice(i,1));
+        todos.splice(i,1);
         div.remove();
       }
     }
@@ -64,11 +64,11 @@ document.getElementById('Btn1').addEventListener('click', event => {
 });
 
 document.getElementById('Btn2').addEventListener('click', event => {
-    alert(AllText + allTodos.length);
+    alert(AllText + todos.length);
 });
 
 document.getElementById('Btn3').addEventListener('click', event => {
     var check = document.getElementsByClassName('checked');
-    var pending = allTodos.length-check.length
+    var pending = todos.length-check.length
     alert(PendingText + pending);
 });
