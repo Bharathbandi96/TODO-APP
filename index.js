@@ -1,70 +1,56 @@
 // Import stylesheets
 import './style.css';
+
+var close = document.getElementsByClassName("close");
 var todos = [];
-var todos1 = [];
-var closed = 0;
-var z = 0;
-var a;
+var allTodos = [];
+var deleted = [];
+var closed = [];
+var all = 0;
+var setAttr = 0;
+var getAttr = 0;
 
 document.getElementById('button').addEventListener('click', function () {
-    var list = document.getElementById('myUL');
-    list.innerHTML = '';
+    var list = document.getElementById('displayArea');
+    //list.innerHTML = ''; //resetting the list
     var todoInput = document.getElementById('myInput').value;
-    todos.push(todoInput);
-    todos1.push(todoInput);
-    
+    todos.push(todoInput)
     for (var i = 0; i < todos.length; i++) {
-      
       var listItem = document.createTextNode(todos[i]);
       var li = document.createElement("li");
-      li.setAttribute("id",i)
+      li.setAttribute("id",setAttr)
       li.appendChild(listItem);
       document.getElementById("myInput").value = "";
       list.append(li);
- 
-      var span = document.createElement("list");
-      var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      li.appendChild(span);
-      
+      allTodos.push(todoInput)
+      closed.push(todoInput)
+      todos.pop(todoInput);
     }
-//console.log(todos)
-    
-    var close = document.getElementsByClassName("close");
-    for (var i = 0; i < close.length; i++) {
+    setAttr++;
 
+    var span = document.createElement("list");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
-        z = div.getAttribute('id');
-        var integer = parseInt(z, 10);
-        //console.log(integer)
-        a = todos1.splice(z,1,'');
-        //console.log(typeof(todos1));
-        todos = todos1.filter(test);
-        // console.log(todos);
-        //console.log(todos.findIndex(a));
+        getAttr = div.getAttribute('id');
+        deleted.unshift(closed[getAttr]);
+        console.log(deleted);
         div.style.display = "none";
         div.className = '';
-        closed++;
+        allTodos.pop();
       }
     }
     })
-    
-    function test(ele,indx,arr){
-      todos = [];
-      for(var i=0;i<todos1.length;i++){
-        if(arr[indx] != ''){
-          todos[i]=ele;
-        }
-      }
-      return todos;
-    }
+
     var list = document.querySelector('ul');
     list.addEventListener('click', function(ev) {
       if (ev.target.tagName === 'LI') 
         ev.target.classList.toggle('checked');
-
       });
 
 
@@ -78,12 +64,11 @@ document.getElementById('button').addEventListener('click', function () {
     });
 
     document.getElementById('Btn2').addEventListener('click', event => {
-        var total = todos.length-closed;
-        alert(AllText + total);
+        alert(AllText + allTodos.length);
     });
 
     document.getElementById('Btn3').addEventListener('click', event => {
         var check = document.getElementsByClassName('checked');
-        var pending = todos.length-closed-check.length
+        var pending = allTodos.length-check.length
         alert(PendingText + pending);
     });
