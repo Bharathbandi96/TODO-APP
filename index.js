@@ -49,10 +49,9 @@ document.getElementById('button').addEventListener('click', function () {
       close[i].onclick = function(i) {
         var div = this.parentElement;
         z = div.getAttribute('id');
-        console.log(z)
-        console.log(typeof(z));
-        // deleted.unshift(todos[z]);
-        // console.log(deleted);
+        var integer = parseInt(z, 10);
+        console.log(todos.splice(integer,1,''));
+        console.log(todos);
         div.style.display = "none";
         div.className = '';
         // todos1.pop();
