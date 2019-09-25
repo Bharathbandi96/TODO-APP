@@ -4,7 +4,6 @@ import './style.css';
 var close = document.getElementsByClassName("close");
 var todos = [];
 var closed = 0;
-var x = 0;
 var z = 0;
 
 document.getElementById('button').addEventListener('click', function () {
@@ -16,7 +15,7 @@ document.getElementById('button').addEventListener('click', function () {
     for (var i = 0; i < todos.length; i++) {
       var listItem = document.createTextNode(todos[i]);
       var li = document.createElement("li");
-      li.setAttribute("id",x)
+      li.setAttribute("id",i)
       li.appendChild(listItem);
       document.getElementById("myInput").value = "";
       list.append(li);
@@ -27,30 +26,23 @@ document.getElementById('button').addEventListener('click', function () {
       span.appendChild(txt);
       li.appendChild(span);
     }
-    x++;
 
-    var span = document.createElement("list");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-
-    debugger;
     for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
         z = div.getAttribute('id');
         var integer = parseInt(z, 10);
-        console.log(todos);
+        console.log(integer)
+        console.log(todos.splice(integer,1));
+        //console.log(todos);
         div.style.display = "none";
         div.className = '';
-         closed++;
+        closed++;
       }
     }
     })
 
     var list = document.querySelector('ul');
-    debugger;
     list.addEventListener('click', function(ev) {
       if (ev.target.tagName === 'LI') 
         ev.target.classList.toggle('checked');
