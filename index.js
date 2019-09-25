@@ -2,6 +2,7 @@
 import './style.css';
 
 var close = document.getElementsByClassName("close");
+var list = document.querySelector('ul');
 var todos = [];
 // var allTodos = [];
 // var deleted = [];
@@ -9,6 +10,10 @@ var todos = [];
 var all = 0;
 var setAttr = 0;
 var getAttr = 0;
+var completedText = 'Completed tasks in your todo list : '
+var AllText = 'Total number of tasks in your todo list : '
+var PendingText = 'Pending tasks in your todo list : '
+
 
 // document.getElementById('button').addEventListener('click', function () {
 //     var list = document.getElementById('displayArea');
@@ -66,7 +71,8 @@ function newElement() {
   span.appendChild(txt);
   li.appendChild(span);
 }
-// document.getElementsByClassName('close').addEventListener('click', deleteElement );
+
+document.getElementById('button').addEventListener('click', deleteElement );
 
 function deleteElement(){
   for (var i = 0; i < close.length; i++) {
@@ -76,28 +82,27 @@ function deleteElement(){
       }
     }
 }
-    var list = document.querySelector('ul');
-    list.addEventListener('click', function(ev) {
-      if (ev.target.tagName === 'LI') 
-        ev.target.classList.toggle('checked');
-      });
 
 
-    var completedText = 'Completed tasks in your todo list : '
-    var AllText = 'Total number of tasks in your todo list : '
-    var PendingText = 'Pending tasks in your todo list : '
 
-    document.getElementById('Btn1').addEventListener('click', event => {
-      var check = document.getElementsByClassName('checked');
-      alert(completedText + check.length);  
-    });
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI')
+      ev.target.classList.toggle('checked');
+});
 
-    document.getElementById('Btn2').addEventListener('click', event => {
-        alert(AllText + allTodos.length);
-    });
 
-    document.getElementById('Btn3').addEventListener('click', event => {
-        var check = document.getElementsByClassName('checked');
-        var pending = allTodos.length-check.length
-        alert(PendingText + pending);
-    });
+    
+document.getElementById('Btn1').addEventListener('click', event => {
+    var check = document.getElementsByClassName('checked');
+    alert(completedText + check.length);  
+});
+
+document.getElementById('Btn2').addEventListener('click', event => {
+    alert(AllText + allTodos.length);
+});
+
+document.getElementById('Btn3').addEventListener('click', event => {
+    var check = document.getElementsByClassName('checked');
+    var pending = allTodos.length-check.length
+    alert(PendingText + pending);
+});
