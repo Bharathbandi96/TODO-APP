@@ -15,7 +15,7 @@ var z = 0;
 
 document.getElementById('button').addEventListener('click', function () {
     var list = document.getElementById('myUL');
-    //list.innerHTML = ''; //resetting the list
+    list.innerHTML = ''; //resetting the list
     var todoInput = document.getElementById('myInput').value;
     todos.push(todoInput)
     
@@ -32,7 +32,7 @@ document.getElementById('button').addEventListener('click', function () {
       todos1.push(todoInput)
       todos2.push(todoInput)
       all = todos1.length;
-      todos.pop(todoInput);
+      //todos.pop(todoInput);
     }
     x++;
 
