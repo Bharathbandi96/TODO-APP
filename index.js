@@ -16,6 +16,9 @@ var PendingText = 'Pending tasks in your todo list : '
 
 
 document.getElementById('button').addEventListener('click', newElement );
+document.getElementById('button').addEventListener('click', deleteElement );
+list.addEventListener('click',checkElement);
+
 function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
@@ -37,8 +40,6 @@ function newElement() {
   li.appendChild(span);
 }
 
-document.getElementById('button').addEventListener('click', deleteElement );
-
 function deleteElement(){
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
@@ -49,15 +50,11 @@ function deleteElement(){
     }
 }
 
+function checkElement(ev){
+    if (ev.target.tagName === 'LI')
+        ev.target.classList.toggle('checked');
+}
 
-
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI')
-      ev.target.classList.toggle('checked');
-});
-
-
-    
 document.getElementById('Btn1').addEventListener('click', event => {
     var check = document.getElementsByClassName('checked');
     alert(completedText + check.length);  
