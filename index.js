@@ -53,7 +53,7 @@ function newElement() {
   span.appendChild(cancel);
   li.appendChild(span);
   addItemsToLocalStorage();
-  displayTodoListItems();
+  getTodoListItems();
 }
 
 
@@ -92,7 +92,7 @@ function addItemsToLocalStorage(){
     ));
 }
 
-function displayTodoListItems(){
+function getTodoListItems(){
   var todoItems = localStorage.getItem('myTodoItems');
   todos = JSON.parse(todoItems);
 }
