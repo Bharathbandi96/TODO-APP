@@ -16,9 +16,12 @@ document.getElementById('button').addEventListener('click', newElement );
 document.getElementById('button').addEventListener('click', deleteElement );
 list.addEventListener('click',checkElement);
 
+
+function init(){
+  addItemsToLocalStorage();
+}
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
-  debugger;
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
     // Cancel the default action, if needed
@@ -49,6 +52,8 @@ function newElement() {
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
+  addItemsToLocalStorage();
+  displayTodoListItems();
 }
 
 
@@ -62,6 +67,7 @@ function deleteElement(){
         //console.log(todos);
         deleteElementFromArray();
         div.remove();
+        addItemsToLocalStorage();
       }
     }
 }
@@ -80,6 +86,18 @@ function checkElement(ev){
         ev.target.classList.toggle('checked');
 }
 
+function addItemsToLocalStorage(){
+    localStorage.setItem('myTodoItems', JSON.stringify({
+    listItem: todos
+    }));
+}
+
+function displayTodoListItems(){
+    var ele = JSON.parse(localStorage.getItem('myTodoItems.[i]'));
+    for (var i = 0; i < localStorage.length; i++){
+      console.log(ele);
+}
+}
 document.getElementById('Btn1').addEventListener('click', event => {
     var check = document.getElementsByClassName('checked');
     alert(completedText + check.length);  
@@ -94,3 +112,5 @@ document.getElementById('Btn3').addEventListener('click', event => {
     var pending = todos.length-check.length
     alert(PendingText + pending);
 });
+
+init();
