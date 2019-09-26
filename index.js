@@ -19,9 +19,15 @@ list.addEventListener('click',checkElement);
 //window.addEventListener('reload', displayTodoListItems);
 
 function init(){
+  x();
   displayTodoListItems();
 }
 
+function x(){
+  for(var i=0;i<todos.length;i++){
+    todos[i].displayTodoListItems();
+  }
+}
 // Execute a function when the user releases a key on the keyboard
 // input.addEventListener("keyup", function(event) {
 //   // Number 13 is the "Enter" key on the keyboard
@@ -35,7 +41,7 @@ function init(){
 
 
 function newElement() {
-  displayTodoListItems()
+  //displayTodoListItems();
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var textNode = document.createTextNode(inputValue);
@@ -50,7 +56,6 @@ function newElement() {
 
   var span = document.createElement("SPAN");
   var cancel = document.createTextNode("\u00D7");
-  span.setAttribute('id','close')
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
@@ -61,6 +66,7 @@ function newElement() {
 
 
 function deleteElement(){
+  //getTodoListItems();
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
@@ -75,15 +81,15 @@ function deleteElement(){
 
 
 function deleteElementFromArray(){
-  var x = deletedText.substr(0,deletedText.length-1);
-  var y = todos.indexOf(x);
-  todos.splice(y,1)
+  var itemDeleted = deletedText.substr(0,deletedText.length-1);
+  var itemIndex = todos.indexOf(itemDeleted);
+  todos.splice(itemIndex,1)
 }
 
 
 function checkElement(ev){
     if (ev.target.tagName === 'LI')
-        ev.target.classList.toggle('checked');
+      ev.target.classList.toggle('checked');
 }
 
 function addItemsToLocalStorage(){
@@ -101,6 +107,7 @@ function getTodoListItems(){
 }
 
 function displayTodoListItems(){
+  getTodoListItems();
   for(var i=0; i<todos.length; i++){
   var li = document.createElement("li");
   var inputValue = todos[i];
@@ -108,10 +115,11 @@ function displayTodoListItems(){
   li.appendChild(textNode);
   var span = document.createElement("SPAN");
   var cancel = document.createTextNode("\u00D7");
-  span.setAttribute('id','close')
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
+  addItemsToLocalStorage();
+  getTodoListItems();
   }
 }
 
