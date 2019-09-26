@@ -53,7 +53,7 @@ function newElement() {
   span.appendChild(cancel);
   li.appendChild(span);
   addItemsToLocalStorage();
-  //displayTodoListItems();
+  displayTodoListItems();
 }
 
 
@@ -87,19 +87,15 @@ function checkElement(ev){
 }
 
 function addItemsToLocalStorage(){
-    localStorage.setItem('myTodoItems', JSON.stringify({
-    listItem: todos
-    }));
+    localStorage.setItem('myTodoItems', JSON.stringify(
+    todos
+    ));
 }
 
-// function displayTodoListItems(){
-//   var todos_str = localStorage.getItem('myTodoItems');
-//   if (todos_str != null) 
-//   {
-//     todos = JSON.parse(todos_str);
-//   }
-//    console.log(typeof());
-// }
+function displayTodoListItems(){
+  var todoItems = localStorage.getItem('myTodoItems');
+  todos = JSON.parse(todoItems);
+}
 
 document.getElementById('Btn1').addEventListener('click', event => {
     var check = document.getElementsByClassName('checked');
