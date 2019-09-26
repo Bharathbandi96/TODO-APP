@@ -16,23 +16,26 @@ document.getElementById('button').addEventListener('click', newElement );
 document.getElementById('button').addEventListener('click', deleteElement );
 list.addEventListener('click',checkElement);
 
+//window.addEventListener('reload', displayTodoListItems);
 
 function init(){
-  addItemsToLocalStorage();
+  displayTodoListItems();
 }
+
 // Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("button").click();
-  }
-});
+// input.addEventListener("keyup", function(event) {
+//   // Number 13 is the "Enter" key on the keyboard
+//   if (event.keyCode === 13) {
+//     // Cancel the default action, if needed
+//     event.preventDefault();
+//     // Trigger the button element with a click
+//     document.getElementById("button").click();
+//   }
+// });
 
 
 function newElement() {
+  displayTodoListItems()
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var textNode = document.createTextNode(inputValue);
@@ -42,7 +45,6 @@ function newElement() {
   } else {
     document.getElementById("displayArea").appendChild(li);
     todos.push(inputValue);
-    console.log(todos);
   }
   document.getElementById("myInput").value = "";
 
@@ -54,6 +56,7 @@ function newElement() {
   li.appendChild(span);
   addItemsToLocalStorage();
   getTodoListItems();
+  console.log(todos);
 }
 
 
@@ -62,9 +65,7 @@ function deleteElement(){
       close[i].onclick = function(i) {
         var div = this.parentElement;
         deletedText = div.textContent;
-        console.log(deletedText);
         var a = document.getElementsByTagName(div).value
-        //console.log(todos);
         deleteElementFromArray();
         div.remove();
         addItemsToLocalStorage();
@@ -77,7 +78,6 @@ function deleteElementFromArray(){
   var x = deletedText.substr(0,deletedText.length-1);
   var y = todos.indexOf(x);
   todos.splice(y,1)
-  console.log(todos);
 }
 
 
@@ -94,7 +94,25 @@ function addItemsToLocalStorage(){
 
 function getTodoListItems(){
   var todoItems = localStorage.getItem('myTodoItems');
+  if(todoItems!=null){
   todos = JSON.parse(todoItems);
+  }
+  return todos;
+}
+
+function displayTodoListItems(){
+  for(var i=0; i<todos.length; i++){
+  var li = document.createElement("li");
+  var inputValue = todos[i];
+  var textNode = document.createTextNode(inputValue);
+  li.appendChild(textNode);
+  var span = document.createElement("SPAN");
+  var cancel = document.createTextNode("\u00D7");
+  span.setAttribute('id','close')
+  span.className = "close";
+  span.appendChild(cancel);
+  li.appendChild(span);
+  }
 }
 
 document.getElementById('Btn1').addEventListener('click', event => {
