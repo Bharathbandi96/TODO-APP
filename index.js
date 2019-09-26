@@ -9,25 +9,17 @@ var deletedText = 0
 var completedText = 'Completed tasks in your todo list : '
 var AllText = 'Total number of tasks in your todo list : '
 var PendingText = 'Pending tasks in your todo list : '
-//var input = document.getElementById("myInput");
 
 
 document.getElementById('button').addEventListener('click', newElement );
 document.getElementById('button').addEventListener('click', deleteElement );
 list.addEventListener('click',checkElement);
 
-//window.addEventListener('reload', displayTodoListItems);
 
 function init(){
-  x();
   displayTodoListItems();
 }
 
-function x(){
-  for(var i=0;i<todos.length;i++){
-    todos[i].displayTodoListItems();
-  }
-}
 // Execute a function when the user releases a key on the keyboard
 // input.addEventListener("keyup", function(event) {
 //   // Number 13 is the "Enter" key on the keyboard
@@ -67,7 +59,7 @@ function newElement() {
 
 
 function deleteElement(){
-  //getTodoListItems();
+  getTodoListItems();
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
@@ -114,6 +106,7 @@ function displayTodoListItems(){
   var inputValue = todos[i];
   var textNode = document.createTextNode(inputValue);
   li.appendChild(textNode);
+  document.getElementById("displayArea").appendChild(li);
   var span = document.createElement("SPAN");
   var cancel = document.createTextNode("\u00D7");
   span.className = "close";
@@ -121,6 +114,7 @@ function displayTodoListItems(){
   li.appendChild(span);
   addItemsToLocalStorage();
   getTodoListItems();
+  deleteElement();
   }
 }
 
