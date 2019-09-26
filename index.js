@@ -9,13 +9,12 @@ var deletedText = 0
 var completedText = 'Completed tasks in your todo list : '
 var AllText = 'Total number of tasks in your todo list : '
 var PendingText = 'Pending tasks in your todo list : '
+var input = document.getElementById("myInput");
 
 
 document.getElementById('button').addEventListener('click', newElement );
 document.getElementById('button').addEventListener('click', deleteElement );
 list.addEventListener('click',checkElement);
-
-var input = document.getElementById("myInput");
 
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
