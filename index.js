@@ -61,7 +61,8 @@ function newElement() {
   li.appendChild(span);
   addItemsToLocalStorage();
   getTodoListItems();
-  console.log(todos);
+  //console.log(todos);
+  // console.log
 }
 
 
