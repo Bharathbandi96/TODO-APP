@@ -9,7 +9,7 @@ var deletedText = 0
 var completedText = 'Completed tasks in your todo list : '
 var AllText = 'Total number of tasks in your todo list : '
 var PendingText = 'Pending tasks in your todo list : '
-var input = document.getElementById("myInput");
+//var input = document.getElementById("myInput");
 
 
 document.getElementById('button').addEventListener('click', newElement );
