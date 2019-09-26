@@ -5,6 +5,7 @@ var close = document.getElementsByClassName("close");
 var list = document.querySelector('ul');
 var todos = [];
 var all = 0;
+var deletedText = 0
 var completedText = 'Completed tasks in your todo list : '
 var AllText = 'Total number of tasks in your todo list : '
 var PendingText = 'Pending tasks in your todo list : '
@@ -43,24 +44,37 @@ function newElement() {
   }
   document.getElementById("myInput").value = "";
 
-  var span = document.createElement("Button");
+  var span = document.createElement("SPAN");
   var cancel = document.createTextNode("\u00D7");
+  span.setAttribute('id','close')
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
 }
 
+
 function deleteElement(){
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
+        deletedText = div.textContent;
+        console.log(deletedText);
         var a = document.getElementsByTagName(div).value
-        todos.splice(i,1);
         //console.log(todos);
+        deleteElementFromArray();
         div.remove();
       }
     }
 }
+
+
+function deleteElementFromArray(){
+  var x = deletedText.substr(0,deletedText.length-1);
+  var y = todos.indexOf(x);
+  todos.splice(y,1)
+  console.log(todos);
+}
+
 
 function checkElement(ev){
     if (ev.target.tagName === 'LI')
