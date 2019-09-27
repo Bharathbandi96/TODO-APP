@@ -13,6 +13,13 @@ var pendingText = 'Pending tasks in your todo list : '
 function init(){
   todoEventListners();
   displayTodoListItems();
+  todoHasItems();
+}
+
+function todoHasItems(){
+  var hasItems = document.getElementById("displayArea").hasChildNodes();
+  if(!hasItems)
+  	document.getElementById("displayArea").append('No tasks right now... Enjoy');
 }
 
 function newElement() {
@@ -55,6 +62,7 @@ function deleteElement(){
         deleteElementFromArray();
         div.remove();
         addItemsToLocalStorage();
+        todoHasItems();
       }
   }
 }
