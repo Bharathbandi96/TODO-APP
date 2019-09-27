@@ -24,25 +24,28 @@ function init(){
 
 function newElement() {
   //displayTodoListItems();
-  var li = document.createElement("li");
+  //var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
-  var textNode = document.createTextNode(inputValue);
-  li.appendChild(textNode);
+  //var textNode = document.createTextNode(inputValue);
+  //li.appendChild(textNode);
   if (inputValue === '') {
     alert("You must write something!");
   } else {
-    document.getElementById("displayArea").appendChild(li);
+    //document.getElementById("displayArea").appendChild(li);
     todos.push(inputValue);
+    addItemsToLocalStorage();
+    getTodoListItems();
+    displayTodoListItems();
   }
   document.getElementById("myInput").value = "";
 
-  var span = document.createElement("SPAN");
-  var cancel = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(cancel);
-  li.appendChild(span);
-  addItemsToLocalStorage();
-  getTodoListItems();
+  // var span = document.createElement("SPAN");
+  // var cancel = document.createTextNode("\u00D7");
+  // span.className = "close";
+  // span.appendChild(cancel);
+  // li.appendChild(span);
+  // addItemsToLocalStorage();
+  // getTodoListItems();
   //console.log(todos);
   // console.log
 }
@@ -91,6 +94,7 @@ function getTodoListItems(){
 
 function displayTodoListItems(){
   getTodoListItems();
+  list.innerHTML = '';
   for(var i=0; i<todos.length; i++){
   var li = document.createElement("li");
   var inputValue = todos[i];
