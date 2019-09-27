@@ -1,4 +1,3 @@
-// Import stylesheets
 import './style.css';
 
 var close = document.getElementsByClassName("close");
@@ -14,6 +13,7 @@ function init(){
   todoEventListners();
   displayTodoListItems();
   todoHasItems();
+  //addItemOnEnter()
 }
 
 function todoHasItems(){
@@ -21,6 +21,16 @@ function todoHasItems(){
   if(!hasItems)
   	document.getElementById("displayArea").append('No tasks right now... Enjoy');
 }
+
+// function addItemOnEnter() {
+//   var input = document.getElementById("myInput").value;
+//   input.addEventListener("keyup", function(event) {
+//     // Number 13 is the "Enter" key on the keyboard
+//     if (event.keyCode === 13) {
+//       document.getElementById("button").addEventListener('click',newElement);
+//     }
+//   });
+// }
 
 function newElement() {
   var inputValue = document.getElementById("myInput").value;
@@ -110,6 +120,7 @@ function displayPendingItems(){
 
 function todoEventListners(){
   document.getElementById('button').addEventListener('click', newElement );
+  //document.getElementById('button').addEventListener('keypress',addItemOnEnter);
   document.getElementById('button').addEventListener('click', deleteElement );
   list.addEventListener('click',checkElement);
   document.getElementById('Btn1').addEventListener('click', displayCompletedItems);
