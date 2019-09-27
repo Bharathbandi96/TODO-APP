@@ -7,49 +7,43 @@ var todos = [];
 var all = 0;
 var deletedText = 0
 var completedText = 'Completed tasks in your todo list : '
-var AllText = 'Total number of tasks in your todo list : '
-var PendingText = 'Pending tasks in your todo list : '
-
-
-document.getElementById('button').addEventListener('click', newElement );
-document.getElementById('button').addEventListener('click', deleteElement );
-list.addEventListener('click',checkElement);
-
+var allText = 'Total number of tasks in your todo list : '
+var pendingText = 'Pending tasks in your todo list : '
 
 function init(){
+  todoEventListners();
   displayTodoListItems();
 }
 
-
-
 function newElement() {
-  //displayTodoListItems();
-  //var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
-  //var textNode = document.createTextNode(inputValue);
-  //li.appendChild(textNode);
   if (inputValue === '') {
     alert("You must write something!");
   } else {
-    //document.getElementById("displayArea").appendChild(li);
     todos.push(inputValue);
     addItemsToLocalStorage();
     getTodoListItems();
     displayTodoListItems();
   }
   document.getElementById("myInput").value = "";
-
-  // var span = document.createElement("SPAN");
-  // var cancel = document.createTextNode("\u00D7");
-  // span.className = "close";
-  // span.appendChild(cancel);
-  // li.appendChild(span);
-  // addItemsToLocalStorage();
-  // getTodoListItems();
-  //console.log(todos);
-  // console.log
 }
 
+function addItemsToLocalStorage(){
+  localStorage.setItem('myTodoItems', JSON.stringify(todos));
+}
+
+function getTodoListItems(){
+  var todoItems = localStorage.getItem('myTodoItems');
+  if(todoItems!=null){
+  todos = JSON.parse(todoItems);
+  }
+  return todos;
+}
+
+function checkElement(ev){
+  if (ev.target.tagName === 'LI')
+    ev.target.classList.toggle('checked');
+}
 
 function deleteElement(){
   getTodoListItems();
@@ -62,9 +56,8 @@ function deleteElement(){
         div.remove();
         addItemsToLocalStorage();
       }
-    }
+  }
 }
-
 
 function deleteElementFromArray(){
   var itemDeleted = deletedText.substr(0,deletedText.length-1);
@@ -72,59 +65,48 @@ function deleteElementFromArray(){
   todos.splice(itemIndex,1)
 }
 
-
-function checkElement(ev){
-    if (ev.target.tagName === 'LI')
-      ev.target.classList.toggle('checked');
-}
-
-function addItemsToLocalStorage(){
-    localStorage.setItem('myTodoItems', JSON.stringify(
-    todos
-    ));
-}
-
-function getTodoListItems(){
-  var todoItems = localStorage.getItem('myTodoItems');
-  if(todoItems!=null){
-  todos = JSON.parse(todoItems);
-  }
-  return todos;
-}
-
 function displayTodoListItems(){
   getTodoListItems();
   list.innerHTML = '';
   for(var i=0; i<todos.length; i++){
-  var li = document.createElement("li");
-  var inputValue = todos[i];
-  var textNode = document.createTextNode(inputValue);
-  li.appendChild(textNode);
-  document.getElementById("displayArea").appendChild(li);
-  var span = document.createElement("SPAN");
-  var cancel = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(cancel);
-  li.appendChild(span);
-  addItemsToLocalStorage();
-  getTodoListItems();
-  deleteElement();
+    var li = document.createElement("li");
+    var inputValue = todos[i];
+    var textNode = document.createTextNode(inputValue);
+    li.appendChild(textNode);
+    document.getElementById("displayArea").appendChild(li);
+    var span = document.createElement("SPAN");
+    var cancel = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(cancel);
+    li.appendChild(span);
+    addItemsToLocalStorage();
+    getTodoListItems();
+    deleteElement();
   }
 }
 
-document.getElementById('Btn1').addEventListener('click', event => {
-    var check = document.getElementsByClassName('checked');
-    alert(completedText + check.length);  
-});
+function displayCompletedItems(){
+  var check = document.getElementsByClassName('checked');
+  alert(completedText + check.length); 
+}
 
-document.getElementById('Btn2').addEventListener('click', event => {
-    alert(AllText + todos.length);
-});
+function displayTotalIdems(){
+  alert(allText + todos.length);
+}
 
-document.getElementById('Btn3').addEventListener('click', event => {
-    var check = document.getElementsByClassName('checked');
-    var pending = todos.length-check.length
-    alert(PendingText + pending);
-});
+function displayPendingItems(){
+  var check = document.getElementsByClassName('checked');
+  var pending = todos.length-check.length
+  alert(pendingText + pending);
+}
+
+function todoEventListners(){
+  document.getElementById('button').addEventListener('click', newElement );
+  document.getElementById('button').addEventListener('click', deleteElement );
+  list.addEventListener('click',checkElement);
+  document.getElementById('Btn1').addEventListener('click', displayCompletedItems);
+  document.getElementById('Btn2').addEventListener('click', displayTotalIdems);
+  document.getElementById('Btn3').addEventListener('click', displayPendingItems);
+}
 
 init();
