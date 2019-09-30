@@ -30,6 +30,11 @@ function attachEventListners(){
 function addItemOnEnter() {
   var input = document.getElementById("myInput").value;
     if (event.keyCode === enterKeyCode) {
+      if (input === '') {
+        alert(onEmptyInputFiled);
+      } 
+    else 
+    {
       todos.push(input);
       addItemsToLocalStorage();
       renderItemsFromLocalStorage();
@@ -37,6 +42,7 @@ function addItemOnEnter() {
       deleteItemFromList();
       inputFieldReset();
     }
+  }
 }
 
 function displayNewItem() {
