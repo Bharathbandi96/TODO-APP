@@ -44,42 +44,39 @@ function newElement() {
     todos.push(inputValue);
     addItemsToLocalStorage();
     getTodoListItems();
-    var li = document.createElement("li");
-    var textNode = document.createTextNode(inputValue);
-    li.appendChild(textNode);
-    document.getElementById("displayArea").appendChild(li);
-    var span = document.createElement("SPAN");
-    var cancel = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(cancel);
-    li.appendChild(span);
-    todoHasItems();
+    display(inputValue);
   }
   document.getElementById("myInput").value = "";
+  document.getElementById('myInput').focus();
 }
 
 function displayTodoListItems(){
   getTodoListItems();
   for(var i=0; i<todos.length; i++){
-    var li = document.createElement("li");
-    var inputValue = todos[i];
-    var textNode = document.createTextNode(inputValue);
-    li.appendChild(textNode);
-    document.getElementById("displayArea").appendChild(li);
-    var span = document.createElement("SPAN");
-    var cancel = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(cancel);
-    li.appendChild(span);
+    display(todos[i]);
     addItemsToLocalStorage();
     deleteElement();
   }
 }
 
+function display(item){
+  var li = document.createElement("li");
+  var inputValue = item;
+  var textNode = document.createTextNode(inputValue);
+  li.appendChild(textNode);
+  document.getElementById("displayArea").appendChild(li);
+  var span = document.createElement("SPAN");
+  var cancel = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(cancel);
+  li.appendChild(span);
+}
+
 function todoHasItems(){
   var hasItems = document.getElementById("displayArea").hasChildNodes();
-  if(!hasItems)
-  	document.getElementById("displayArea").append('No tasks right now... Enjoy');
+  if(!hasItems){
+    document.getElementById("displayArea").append('No tasks right now... Enjoy');
+  }
 }
 
 function addItemsToLocalStorage(){
