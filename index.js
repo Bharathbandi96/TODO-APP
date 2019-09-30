@@ -36,7 +36,7 @@ function addItemOnEnter() {
     else 
     {
       todos.push(input);
-      addItemsToLocalStorage();
+      addItemToLocalStorage();
       renderItemsFromLocalStorage();
       display(input);
       deleteItemFromList();
@@ -51,7 +51,7 @@ function displayNewItem() {
     alert(onEmptyInputFiled);
   } else {
     todos.push(inputValue);
-    addItemsToLocalStorage();
+    addItemToLocalStorage();
     renderItemsFromLocalStorage();
     display(inputValue);
     isEmpty();
@@ -69,7 +69,7 @@ function displayTodoListItems(){
   for(var i=0; i<todos.length; i++){
     display(todos[i]);
     isEmpty();
-    addItemsToLocalStorage();
+    addItemToLocalStorage();
     deleteItemFromList();
   }
 }
@@ -94,7 +94,7 @@ function isEmpty(){
   }
 }
 
-function addItemsToLocalStorage(){
+function addItemToLocalStorage(){
   localStorage.setItem('myTodoItems', JSON.stringify(todos));
 }
 
@@ -118,7 +118,7 @@ function deleteItemFromList(){
         var div = this.parentElement;     
         deleteItemFromArray(div.textContent);
         div.remove();
-        addItemsToLocalStorage();
+        addItemToLocalStorage();
         isEmpty();
       }
   }
