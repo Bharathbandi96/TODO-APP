@@ -22,9 +22,9 @@ function attachEventListners(){
   document.getElementById('myInput').addEventListener('keypress',addItemOnEnter);
   document.getElementById('button').addEventListener('click', deleteItemFromList );
   ulList.addEventListener('click',changeItemState);
-  document.getElementById('Btn1').addEventListener('click', displayCompletedItemsCount);
-  document.getElementById('Btn2').addEventListener('click', displayTotalItemsCount);
-  document.getElementById('Btn3').addEventListener('click', displayPendingItemsCount);
+  document.getElementById('completedTaskButton').addEventListener('click', displayCompletedItemsCount);
+  document.getElementById('allTaskButton').addEventListener('click', displayTotalItemsCount);
+  document.getElementById('pendingTaskButton').addEventListener('click', displayPendingItemsCount);
 }
 
 function addItemOnEnter() {

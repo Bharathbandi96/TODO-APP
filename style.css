@@ -62,14 +62,14 @@ input {
 }
 
 
-.Btn{
+.taskButton{
   position: fixed;
   top: 457px;
   float:left;
   padding: 5px;
 }
 
-.Btn1,.Btn2,.Btn3{
+.allTaskButton,.completedTaskButton,.pendingTaskButton{
   padding:5px;
   width:100px;
   background: #d9d9d9;
