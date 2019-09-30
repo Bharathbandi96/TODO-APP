@@ -46,10 +46,10 @@ function displayNewItem() {
     addItemsToLocalStorage();
     renderItemsFromLocalStorage();
     display(inputValue);
+    ifListIsEmpty();
   }
   document.getElementById("myInput").value = "";
   document.getElementById('myInput').focus();
-  ifListIsEmpty();
 }
 
 function displayTodoListItems(){
@@ -104,8 +104,7 @@ function deleteItemFromList(){
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
-        deletedText = div.textContent;
-        var a = document.getElementsByTagName(div).value
+        deletedText = div.textContent;       
         deleteItemFromArray();
         div.remove();
         addItemsToLocalStorage();
