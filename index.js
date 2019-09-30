@@ -5,6 +5,8 @@ var ulList = document.querySelector('ul');
 var todos = [];
 var all = 0;
 var deletedText = 0
+var onEmptyListShowMessage = 'OOPS... Your List Is Empty'
+var onEmptyInputFiled = 'You must write something!'
 var completedText = 'Completed tasks in your todo list : '
 var allText = 'Total number of tasks in your todo list : '
 var pendingText = 'Pending tasks in your todo list : '
@@ -12,18 +14,18 @@ var pendingText = 'Pending tasks in your todo list : '
 function init(){
   addEventListners();
   displayTodoListItems();
-  todoHasItems();
+  ifListIsEmpty();
   //addItemOnEnter()
 }
 
 function addEventListners(){
-  document.getElementById('button').addEventListener('click', newElement );
+  document.getElementById('button').addEventListener('click', displayNewItem);
   document.getElementById('myInput').addEventListener('keypress',addItemOnEnter);
-  document.getElementById('button').addEventListener('click', deleteElement );
-  ulList.addEventListener('click',checkElement);
-  document.getElementById('Btn1').addEventListener('click', displayCompletedItems);
-  document.getElementById('Btn2').addEventListener('click', displayTotalItems);
-  document.getElementById('Btn3').addEventListener('click', displayPendingItems);
+  document.getElementById('button').addEventListener('click', deleteItemFromList );
+  ulList.addEventListener('click',changeItemState);
+  document.getElementById('Btn1').addEventListener('click', displayCompletedItemsCount);
+  document.getElementById('Btn2').addEventListener('click', displayTotalItemsCount);
+  document.getElementById('Btn3').addEventListener('click', displayPendingItemsCount);
 }
 
 function addItemOnEnter() {
@@ -31,34 +33,33 @@ function addItemOnEnter() {
     if (event.keyCode === 13) {
       todos.push(input);
       addItemsToLocalStorage();
-      getTodoListItems();
+      renderTodoListItems();
       display(input);
     }
 }
 
-function newElement() {
+function displayNewItem() {
   var inputValue = document.getElementById("myInput").value;
   if (inputValue === '') {
-    alert("You must write something!");
+    alert(onEmptyInputFiled);
   } else {
     todos.push(inputValue);
     addItemsToLocalStorage();
-    getTodoListItems();
+    renderTodoListItems();
     display(inputValue);
   }
   document.getElementById("myInput").value = "";
   document.getElementById('myInput').focus();
-  todoHasItems();
+  ifListIsEmpty();
 }
 
 function displayTodoListItems(){
-  getTodoListItems();
+  renderTodoListItems();
   for(var i=0; i<todos.length; i++){
     display(todos[i]);
-    todoHasItems();
+    ifListIsEmpty();
     addItemsToLocalStorage();
-    deleteElement();
-    
+    deleteItemFromList();
   }
 }
 
@@ -73,13 +74,13 @@ function display(item){
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
-  todoHasItems();
+  ifListIsEmpty();
 }
 
-function todoHasItems(){
+function ifListIsEmpty(){
   var hasItems = document.getElementById("displayArea").hasChildNodes();
   if(!hasItems){
-    document.getElementById("displayArea").append('No tasks right now... Enjoy');
+    document.getElementById("displayArea").append(onEmptyListShowMessage);
   }
 }
 
@@ -87,7 +88,7 @@ function addItemsToLocalStorage(){
   localStorage.setItem('myTodoItems', JSON.stringify(todos));
 }
 
-function getTodoListItems(){
+function renderTodoListItems(){
   var todoItems = localStorage.getItem('myTodoItems');
   if(todoItems!=null){
   todos = JSON.parse(todoItems);
@@ -95,42 +96,42 @@ function getTodoListItems(){
   return todos;
 }
 
-function checkElement(ev){
+function changeItemState(ev){
   if (ev.target.tagName === 'LI')
     ev.target.classList.toggle('checked');
 }
 
-function deleteElement(){
-  getTodoListItems();
+function deleteItemFromList(){
+  renderTodoListItems();
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
         deletedText = div.textContent;
         var a = document.getElementsByTagName(div).value
-        deleteElementFromArray();
+        deleteItemFromArray();
         div.remove();
         addItemsToLocalStorage();
-        todoHasItems();
+        ifListIsEmpty();
       }
   }
 }
 
-function deleteElementFromArray(){
+function deleteItemFromArray(){
   var itemDeleted = deletedText.substr(0,deletedText.length-1);
   var itemIndex = todos.indexOf(itemDeleted);
   todos.splice(itemIndex,1)
 }
 
-function displayCompletedItems(){
+function displayCompletedItemsCount(){
   var check = document.getElementsByClassName('checked');
   alert(completedText + check.length); 
 }
 
-function displayTotalItems(){
+function displayTotalItemsCount(){
   alert(allText + todos.length);
 }
 
-function displayPendingItems(){
+function displayPendingItemsCount(){
   var check = document.getElementsByClassName('checked');
   var pending = todos.length-check.length
   alert(pendingText + pending);
