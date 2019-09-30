@@ -10,15 +10,15 @@ var allText = 'Total number of tasks in your todo list : '
 var pendingText = 'Pending tasks in your todo list : '
 
 function init(){
-  todoEventListners();
+  addEventListners();
   displayTodoListItems();
   todoHasItems();
   //addItemOnEnter()
 }
 
-function todoEventListners(){
+function addEventListners(){
   document.getElementById('button').addEventListener('click', newElement );
-  //document.getElementById('button').addEventListener('keypress',addItemOnEnter);
+  document.getElementById('myInput').addEventListener('keypress',addItemOnEnter);
   document.getElementById('button').addEventListener('click', deleteElement );
   ulList.addEventListener('click',checkElement);
   document.getElementById('Btn1').addEventListener('click', displayCompletedItems);
@@ -28,12 +28,12 @@ function todoEventListners(){
 
 function addItemOnEnter() {
   var input = document.getElementById("myInput").value;
-  input.addEventListener("keyup", function(event) {
-    // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
-      document.getElementById("button").addEventListener('click',newElement);
+      todos.push(input);
+      addItemsToLocalStorage();
+      getTodoListItems();
+      display(input);
     }
-  });
 }
 
 function newElement() {
@@ -48,14 +48,17 @@ function newElement() {
   }
   document.getElementById("myInput").value = "";
   document.getElementById('myInput').focus();
+  todoHasItems();
 }
 
 function displayTodoListItems(){
   getTodoListItems();
   for(var i=0; i<todos.length; i++){
     display(todos[i]);
+    todoHasItems();
     addItemsToLocalStorage();
     deleteElement();
+    
   }
 }
 
@@ -70,6 +73,7 @@ function display(item){
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
+  todoHasItems();
 }
 
 function todoHasItems(){
