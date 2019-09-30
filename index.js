@@ -18,9 +18,9 @@ function init(){
 }
 
 function attachEventListners(){
-  document.getElementById('button').addEventListener('click', displayNewItem);
+  document.getElementById('addButton').addEventListener('click', displayNewItem);
   document.getElementById('myInput').addEventListener('keypress',addItemOnEnter);
-  document.getElementById('button').addEventListener('click', deleteItemFromList );
+  document.getElementById('addButton').addEventListener('click', deleteItemFromList );
   ulList.addEventListener('click',changeItemState);
   document.getElementById('completedTaskButton').addEventListener('click', displayCompletedItemsCount);
   document.getElementById('allTaskButton').addEventListener('click', displayTotalItemsCount);

@@ -45,7 +45,7 @@ input {
   font-size: 16px;
 }
 
-.addBtn {
+.addButton {
   position: relative;
   margin-left:8px;
   padding: 10px;
@@ -57,7 +57,7 @@ input {
   font-size: 16px;
 }
 
-.addBtn:hover {
+.addButton:hover {
   background-color: #bbb;
 }
 
