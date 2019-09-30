@@ -15,7 +15,6 @@ function init(){
   addEventListners();
   displayTodoListItems();
   ifListIsEmpty();
-  //addItemOnEnter()
 }
 
 function addEventListners(){
@@ -33,7 +32,7 @@ function addItemOnEnter() {
     if (event.keyCode === 13) {
       todos.push(input);
       addItemsToLocalStorage();
-      renderTodoListItems();
+      renderItemsFromLocalStorage();
       display(input);
     }
 }
@@ -45,7 +44,7 @@ function displayNewItem() {
   } else {
     todos.push(inputValue);
     addItemsToLocalStorage();
-    renderTodoListItems();
+    renderItemsFromLocalStorage();
     display(inputValue);
   }
   document.getElementById("myInput").value = "";
@@ -54,7 +53,7 @@ function displayNewItem() {
 }
 
 function displayTodoListItems(){
-  renderTodoListItems();
+  renderItemsFromLocalStorage();
   for(var i=0; i<todos.length; i++){
     display(todos[i]);
     ifListIsEmpty();
@@ -74,7 +73,6 @@ function display(item){
   span.className = "close";
   span.appendChild(cancel);
   li.appendChild(span);
-  ifListIsEmpty();
 }
 
 function ifListIsEmpty(){
@@ -88,7 +86,7 @@ function addItemsToLocalStorage(){
   localStorage.setItem('myTodoItems', JSON.stringify(todos));
 }
 
-function renderTodoListItems(){
+function renderItemsFromLocalStorage(){
   var todoItems = localStorage.getItem('myTodoItems');
   if(todoItems!=null){
   todos = JSON.parse(todoItems);
@@ -102,7 +100,7 @@ function changeItemState(ev){
 }
 
 function deleteItemFromList(){
-  renderTodoListItems();
+  renderItemsFromLocalStorage();
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
         var div = this.parentElement;
