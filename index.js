@@ -26,15 +26,15 @@ function todoEventListners(){
   document.getElementById('Btn3').addEventListener('click', displayPendingItems);
 }
 
-// function addItemOnEnter() {
-//   var input = document.getElementById("myInput").value;
-//   input.addEventListener("keyup", function(event) {
-//     // Number 13 is the "Enter" key on the keyboard
-//     if (event.keyCode === 13) {
-//       document.getElementById("button").addEventListener('click',newElement);
-//     }
-//   });
-// }
+function addItemOnEnter() {
+  var input = document.getElementById("myInput").value;
+  input.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      document.getElementById("button").addEventListener('click',newElement);
+    }
+  });
+}
 
 function newElement() {
   var inputValue = document.getElementById("myInput").value;
