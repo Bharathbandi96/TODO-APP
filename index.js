@@ -1,7 +1,7 @@
 import './style.css';
 
 var close = document.getElementsByClassName("close");
-var list = document.querySelector('ul');
+var ulList = document.querySelector('ul');
 var todos = [];
 var all = 0;
 var deletedText = 0
@@ -16,10 +16,14 @@ function init(){
   //addItemOnEnter()
 }
 
-function todoHasItems(){
-  var hasItems = document.getElementById("displayArea").hasChildNodes();
-  if(!hasItems)
-  	document.getElementById("displayArea").append('No tasks right now... Enjoy');
+function todoEventListners(){
+  document.getElementById('button').addEventListener('click', newElement );
+  //document.getElementById('button').addEventListener('keypress',addItemOnEnter);
+  document.getElementById('button').addEventListener('click', deleteElement );
+  ulList.addEventListener('click',checkElement);
+  document.getElementById('Btn1').addEventListener('click', displayCompletedItems);
+  document.getElementById('Btn2').addEventListener('click', displayTotalItems);
+  document.getElementById('Btn3').addEventListener('click', displayPendingItems);
 }
 
 // function addItemOnEnter() {
@@ -40,9 +44,42 @@ function newElement() {
     todos.push(inputValue);
     addItemsToLocalStorage();
     getTodoListItems();
-    displayTodoListItems();
+    var li = document.createElement("li");
+    var textNode = document.createTextNode(inputValue);
+    li.appendChild(textNode);
+    document.getElementById("displayArea").appendChild(li);
+    var span = document.createElement("SPAN");
+    var cancel = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(cancel);
+    li.appendChild(span);
+    todoHasItems();
   }
   document.getElementById("myInput").value = "";
+}
+
+function displayTodoListItems(){
+  getTodoListItems();
+  for(var i=0; i<todos.length; i++){
+    var li = document.createElement("li");
+    var inputValue = todos[i];
+    var textNode = document.createTextNode(inputValue);
+    li.appendChild(textNode);
+    document.getElementById("displayArea").appendChild(li);
+    var span = document.createElement("SPAN");
+    var cancel = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(cancel);
+    li.appendChild(span);
+    addItemsToLocalStorage();
+    deleteElement();
+  }
+}
+
+function todoHasItems(){
+  var hasItems = document.getElementById("displayArea").hasChildNodes();
+  if(!hasItems)
+  	document.getElementById("displayArea").append('No tasks right now... Enjoy');
 }
 
 function addItemsToLocalStorage(){
@@ -83,32 +120,12 @@ function deleteElementFromArray(){
   todos.splice(itemIndex,1)
 }
 
-function displayTodoListItems(){
-  getTodoListItems();
-  list.innerHTML = '';
-  for(var i=0; i<todos.length; i++){
-    var li = document.createElement("li");
-    var inputValue = todos[i];
-    var textNode = document.createTextNode(inputValue);
-    li.appendChild(textNode);
-    document.getElementById("displayArea").appendChild(li);
-    var span = document.createElement("SPAN");
-    var cancel = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(cancel);
-    li.appendChild(span);
-    addItemsToLocalStorage();
-    getTodoListItems();
-    deleteElement();
-  }
-}
-
 function displayCompletedItems(){
   var check = document.getElementsByClassName('checked');
   alert(completedText + check.length); 
 }
 
-function displayTotalIdems(){
+function displayTotalItems(){
   alert(allText + todos.length);
 }
 
@@ -116,16 +133,6 @@ function displayPendingItems(){
   var check = document.getElementsByClassName('checked');
   var pending = todos.length-check.length
   alert(pendingText + pending);
-}
-
-function todoEventListners(){
-  document.getElementById('button').addEventListener('click', newElement );
-  //document.getElementById('button').addEventListener('keypress',addItemOnEnter);
-  document.getElementById('button').addEventListener('click', deleteElement );
-  list.addEventListener('click',checkElement);
-  document.getElementById('Btn1').addEventListener('click', displayCompletedItems);
-  document.getElementById('Btn2').addEventListener('click', displayTotalIdems);
-  document.getElementById('Btn3').addEventListener('click', displayPendingItems);
 }
 
 init();
