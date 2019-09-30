@@ -4,20 +4,20 @@ var close = document.getElementsByClassName("close");
 var ulList = document.querySelector('ul');
 var todos = [];
 var all = 0;
-var deletedText = 0
+var enterKeyCode = 13;
 var onEmptyListShowMessage = 'OOPS... Your List Is Empty'
 var onEmptyInputFiled = 'You must write something!'
-var completedText = 'Completed tasks in your todo list : '
-var allText = 'Total number of tasks in your todo list : '
-var pendingText = 'Pending tasks in your todo list : '
+var completedText = 'Completed tasks in your list : '
+var allText = 'Total number of tasks in your list : '
+var pendingText = 'Pending tasks in your list : '
 
 function init(){
-  addEventListners();
+  attachEventListners();
   displayTodoListItems();
-  ifListIsEmpty();
+  isEmpty();
 }
 
-function addEventListners(){
+function attachEventListners(){
   document.getElementById('button').addEventListener('click', displayNewItem);
   document.getElementById('myInput').addEventListener('keypress',addItemOnEnter);
   document.getElementById('button').addEventListener('click', deleteItemFromList );
@@ -29,11 +29,13 @@ function addEventListners(){
 
 function addItemOnEnter() {
   var input = document.getElementById("myInput").value;
-    if (event.keyCode === 13) {
+    if (event.keyCode === enterKeyCode) {
       todos.push(input);
       addItemsToLocalStorage();
       renderItemsFromLocalStorage();
       display(input);
+      deleteItemFromList();
+      inputFieldReset();
     }
 }
 
@@ -46,8 +48,12 @@ function displayNewItem() {
     addItemsToLocalStorage();
     renderItemsFromLocalStorage();
     display(inputValue);
-    ifListIsEmpty();
+    isEmpty();
   }
+  inputFieldReset();
+}
+
+function inputFieldReset(){
   document.getElementById("myInput").value = "";
   document.getElementById('myInput').focus();
 }
@@ -56,7 +62,7 @@ function displayTodoListItems(){
   renderItemsFromLocalStorage();
   for(var i=0; i<todos.length; i++){
     display(todos[i]);
-    ifListIsEmpty();
+    isEmpty();
     addItemsToLocalStorage();
     deleteItemFromList();
   }
@@ -75,7 +81,7 @@ function display(item){
   li.appendChild(span);
 }
 
-function ifListIsEmpty(){
+function isEmpty(){
   var hasItems = document.getElementById("displayArea").hasChildNodes();
   if(!hasItems){
     document.getElementById("displayArea").append(onEmptyListShowMessage);
@@ -103,17 +109,16 @@ function deleteItemFromList(){
   renderItemsFromLocalStorage();
   for (var i = 0; i < close.length; i++) {
       close[i].onclick = function(i) {
-        var div = this.parentElement;
-        deletedText = div.textContent;       
-        deleteItemFromArray();
+        var div = this.parentElement;     
+        deleteItemFromArray(div.textContent);
         div.remove();
         addItemsToLocalStorage();
-        ifListIsEmpty();
+        isEmpty();
       }
   }
 }
 
-function deleteItemFromArray(){
+function deleteItemFromArray(deletedText){
   var itemDeleted = deletedText.substr(0,deletedText.length-1);
   var itemIndex = todos.indexOf(itemDeleted);
   todos.splice(itemIndex,1)
