@@ -96,10 +96,11 @@ function isEmpty(){
 
 function addItemToLocalStorage(){
   localStorage.setItem('myTodoItems', JSON.stringify(todos));
+  sessionStorage.setItem('myTodoItems',JSON.stringify(todos));
 }
 
 function renderItemsFromLocalStorage(){
-  var todoItems = localStorage.getItem('myTodoItems');
+  var todoItems = sessionStorage.getItem('myTodoItems');
   if(todoItems!=null){
   todos = JSON.parse(todoItems);
   }
