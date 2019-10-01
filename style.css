@@ -9,7 +9,6 @@ h1, h2 {
 #app{
   height:500px;
   position: fixed;
-  overflow-y: scroll;
   box-align: center;
   margin-left:50px;
   border:2px solid gray;
@@ -27,6 +26,9 @@ h1, h2 {
 }
 
 #displayArea{
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  height: 330px;
   margin-top:125px;
   padding:2px;
 }
